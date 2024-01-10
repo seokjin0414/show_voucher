@@ -33,6 +33,14 @@ dependencies {
 	implementation("org.mariadb.jdbc:mariadb-java-client")
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3")
+
+	implementation("org.apache.commons:commons-lang3:3.14.0")
+	implementation("com.fasterxml.uuid:java-uuid-generator:4.3.0")
+
+
+	implementation("com.navercorp.lucy:lucy-xss:1.6.3")
+
+
 }
 
 tasks.withType<Test> {
