@@ -1,0 +1,122 @@
+<footer class="common-footer">
+        <div class="footer-row">
+          <button class="footer-policy" id="ft_terms_use">Terms of Use</button>
+          <button class="footer-policy" id="ft_terms_privacy">Privacy Policy</button>
+        </div>
+        <div class="footer-row">
+          <div class="footer-powered">Powerd by. SHIN, Inc.</div>
+        </div>
+        <div class="footer-row">
+          <div class="footer-sponsers">
+            <img class="footer-logo" src="./assets/images/logos/kompass-large-logo.png" alt="logo"/>
+            <img class="footer-logo" src="./assets/images/logos/lazy-large-logo.png" alt="logo"/>
+          </div>
+        </div>
+      </footer>
+
+<div class="layer" >
+      <div class="modal" id="dialog_terms">
+        <div class="inner agreement">
+          <h2 class="inner-title" id="agree_title">서비스 이용 동의</h2>
+          <p class="inner-content" id="terms_use_contents">
+            서비스를 이용하시는 고객님께 감사의 말씀을 드립니다.
+            <br /><br />
+            본 서비스에서 취급하는 모든 가상자산의 시세는 상승 또는 하락할 수
+            있으며, 그에 따른 이익 또는 손실이 발생할 수 있음을 알려드립니다.
+            <br /><br />
+            본사는 이용자들의 이익과 손실에 대하여 책임지지 않으며, 투자의
+            책임은 투자자 본인에게 있음을 다시 한 번 유념하여 주시기 바랍니다.
+          </p>
+          <button class="inner-button is-active" id="agree_close">OK</button>
+        </div>
+        <div class="background"></div>
+      </div>
+    </div>      
+      
+
+<script type="text/javascript">
+
+var terms_use_contents = "";
+var terms_privacy_contents = "";
+
+$(function () {
+	
+	var cookieLang = getCookie('APPLICATION_LOCALE');
+    if (cookieLang == null || cookieLang == 'undefined' || cookieLang == '')
+    {
+        cookieLang = 'ko';
+    }
+    if (cookieLang == "ko")
+    {
+        $('#lang_text').html("한국어");
+
+    } else if (cookieLang == "en")
+    {
+        $('#lang_text').html("English");
+    }
+    
+    $('#' + cookieLang).addClass('is-active');
+	
+	$('#lang_text , #lang_arrow').on("click", function () {
+		
+		if($("#lang_select").css("display") == "none") {
+			$("#lang_select").show();			
+		} else {
+			$("#lang_select").hide();
+		}
+		
+        
+    });
+	
+	$('#lang_select').find(".language-item").on("click", function () {
+        var selected_id = $(this).attr('id');
+        javascript:location.href = '?lang=' + selected_id;
+    });
+	
+	$('#ft_terms_use').on("click", function () {
+		
+		$("#agree_title").html(i18n("scrn.join.msg9"));
+		$('#terms_use_contents').html(terms_use_contents);
+		$("#dialog_terms").addClass("agreement-active");
+	});
+
+	$('#ft_terms_privacy').on("click", function () {
+		
+		$("#agree_title").html(i18n("scrn.join.msg10"));
+		$('#terms_use_contents').html(terms_privacy_contents);
+		$("#dialog_terms").addClass("agreement-active");
+	});
+	
+	$("#agree_close").click(function(){
+		$("#dialog_terms").removeClass("agreement-active");
+	});
+	
+	
+	getJson('/api/v1/board/terms/' + 'use', '', function (json) {
+	    var data = json.data;
+
+	    $('#terms_use_contents').html("");
+
+	    if (data != null)
+	    {
+	    	terms_use_contents = data.termsContents;
+	    }
+
+	  });
+	
+	getJson('/api/v1/board/terms/' + 'privacy', '', function (json) {
+	    var data = json.data;
+
+	    $('#terms_privacy_contents').html("");
+
+	    if (data != null)
+	    {
+	    	terms_privacy_contents = data.termsContents;
+
+	    }
+
+	  });
+});
+
+
+</script>

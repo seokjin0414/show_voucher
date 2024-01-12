@@ -37,10 +37,9 @@ dependencies {
 	implementation("org.apache.commons:commons-lang3:3.14.0")
 	implementation("com.fasterxml.uuid:java-uuid-generator:4.3.0")
 
-
 	implementation("com.navercorp.lucy:lucy-xss:1.6.3")
 
-
+	implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.3.0")
 }
 
 tasks.withType<Test> {

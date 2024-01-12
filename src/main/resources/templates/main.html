@@ -1,0 +1,204 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <th:block th:include="common/header"></th:block>
+    <style>
+      div.lang {
+        display: none;
+        z-index:2;
+        position: absolute;
+        left: -110px;
+        top: 30px;
+        width: 160px;
+        background-color:#fffcf2;
+        padding: 5px 10px;
+        border: 1px solid #878787;
+        border-radius: 5px
+      }
+      div.lang > ul > li {
+        padding-bottom: 5px;
+        border-bottom: 1px solid #fdeeb2;
+        margin-bottom: 5px;
+      }
+      div.lang > ul > li > img {
+        vertical-align:middle;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="home-page container">
+      <div class="header">
+        <div class="logo">
+          <div class="logo-image" onclick="location.href='/'">
+            <img src="assets/images/logos/tost-logo.png" alt="logo" />
+          </div>
+        </div>
+        <div class="header-icons">
+          <div class="icon">
+            <div class="wallet-image" id="user_btn">
+              <img src="assets/images/icons/wallet.png" alt="user" />
+            </div>
+          </div>
+          <div class="icon">
+            <div class="setting-image" id="setting_btn">
+              <img src="assets/images/icons/setting-large.png" alt="setting" />
+            </div>
+          </div>
+          <div style="position: relative">
+              <div style="width: 50px;text-align: right">
+                <img
+                        th:src="|/assets/images/icons/lang/${#locale}.png|"
+                        onerror="this.src='/assets/images/icons/lang/ko_KR.png'"
+                        style="border: 1px solid #878787;padding: 2px;border-radius: 5px"
+                        width="30"
+                        alt="logo"
+                      onclick="$('.lang').toggle()"
+                />
+              </div>
+              <script>
+                $('div.lang ul li').click(function (){
+                  var lang = $(this).attr('data');
+                  location.href = "?lang=" + lang;
+                });
+              </script>
+          </div>
+        </div>
+      </div>
+      <main>
+        <div class="prize-money" style="display: none;">
+          <div class="title" data-lang="view.winner.money">나의 총 수익</div>
+          <div class="price-area">
+            <span class="price-unit"> $</span>
+            <div id="prizeMoney" class="counter" data-count="0" data-radix="4" data-separator="">
+              0
+            </div>
+          </div>
+        </div>
+        <div class="today">
+          <span id="today_crncyCd"></span>
+          <span>전일대비</span>
+          <span style="margin-right:5px"  id="today_percent">16% 상승</span>
+          <span>오늘의</span>
+          <span>가격 : </span>
+          <span id="today_price">2172.7521</span>
+        </div>
+        <div class="banner">
+          <ul class="banner-carousel">
+            <!--                <li class="banner-item">-->
+            <!--                    <img src="/assets/images/banners/banner1.png" alt="logo">-->
+            <!--                </li>-->
+            <li class="banner-item">
+              <img
+                      th:src="|/assets/images/banners/tost_banner01_${#locale}.png|"
+                      onerror="this.src='/assets/images/banners/banner2.png'"
+                      alt="logo" />
+            </li>
+            <li class="banner-item">
+              <img  th:src="|/assets/images/banners/tost_banner02_${#locale}.png|"
+                    onerror="this.src='/assets/images/banners/banner3.png'" alt="logo" />
+            </li>
+          </ul>
+        </div>
+        <div class="staking">
+          <button id="staking_btn" class="staking-button">
+            지금 바로 va 하세요
+          </button>
+        </div>
+        <div class="description">
+          <div class="desc-inner">
+          </div>
+        </div>
+        <div class="corp">
+          <ul class="corp-list">
+            <li
+              class="corp-item"
+              onclick="window.open('https://kompasswallet.io/')"
+            >
+              <div class="corp-logo">
+                <img
+                  src="assets/images/logos/kompass-large-logo.png"
+                  alt="kompass"
+                />
+              </div>
+              <div class="corp-name">Kompass</div>
+            </li>
+            <li
+              class="corp-item"
+              onclick="window.open('https://wallet.bitonechain.com/')"
+            >
+              <div class="corp-logo">
+                <img
+                  src="assets/images/logos/bitone-large-logo.png"
+                  alt="kompass"
+                />
+              </div>
+              <div class="corp-name">Bitone Wallet</div>
+            </li>
+            <li
+              class="corp-item"
+              onclick="window.open('https://www.lazyplay.io/')"
+            >
+              <div class="corp-logo">
+                <img
+                  style="height: 60px"
+                  src="assets/images/logos/lazy-large-logo.png"
+                  alt="kompass"
+                />
+              </div>
+              <div class="corp-name">LAZY</div>
+            </li>
+          </ul>
+        </div>
+      </main>
+      <ul class="alarm" id="notice_list">
+      </ul>
+  </div>
+
+
+<div id="div_notice_item" style="display:none">
+  <li class="alarm-list notice-item">
+    <div class="alarm-desc">
+        <div class="alarm-icon is-active">
+            <img src="./assets/images/icons/alarm-on.png" alt="alarm" />
+        </div>
+        <div class="alarm-text" id="notice_title">
+        </div>
+    </div>
+    <div class="alarm-date" id="notice_date"></div>
+  </li>
+</div>
+
+
+    <script type="text/javascript" src="assets/js/countUp.min.js"></script>
+    <script type="text/javascript">
+      var pageAction = (function () {
+        var init = function () {
+          slickEvent();
+        };
+
+        return {
+          init: init,
+        };
+      })();
+
+      $(function () {
+        $(".banner-carousel").slick({
+          dots: true,
+          arrows: false,
+          autoplay: true,
+          autoplaySpeed: 5000,
+        });
+        $(".corp-list").slick({
+          dots: false,
+          arrows: false,
+          autoplay: true,
+          autoplaySpeed: 3000,
+          variableWidth: true,
+          draggable:false,
+        });
+        pageAction.init();
+      });
+
+    </script>
+  </body>
+</html>
