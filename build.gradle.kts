@@ -40,6 +40,9 @@ dependencies {
 	implementation("com.navercorp.lucy:lucy-xss:1.6.3")
 
 	implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.3.0")
+
+	implementation("org.jsoup:jsoup:1.17.2")
+
 }
 
 tasks.withType<Test> {
