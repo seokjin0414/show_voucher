@@ -15,4 +15,9 @@ public class MainViewController {
     public String main() {
         return "main";
     }
+
+    @GetMapping(value = {"/main_test"})
+    public String main_test() {
+        return "main_test";
+    }
 }
