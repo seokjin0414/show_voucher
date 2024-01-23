@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="shin.com.show_voucher.biz.dao.CompanyDao">
+
+    <!--  parsing url list  -->
+    <select id="SelectCompanyList" parameterType="String" resultType="GetCompanyForParsing">
+        SELECT COMPANY_NAME, COMPANY_URL
+        FROM COMPANY
+        WHERE COMPANY_STATE = #{company_state}
+    </select>
+
+</mapper>

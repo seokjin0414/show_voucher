@@ -1,4 +1,4 @@
-package shin.com.show_voucher.biz.vo.model;
+package shin.com.show_voucher.biz.vo.model.visit;
 
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
