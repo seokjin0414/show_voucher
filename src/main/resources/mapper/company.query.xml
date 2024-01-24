@@ -5,7 +5,7 @@
 
     <!--  select company list for parsing  -->
     <select id="selectCompanyListForParsing" parameterType="String" resultType="GetCompanyForParsing">
-        SELECT COMPANY_NAME, COMPANY_URL
+        SELECT COMPANY_IDX, COMPANY_NAME, COMPANY_URL
         FROM COMPANY
         WHERE COMPANY_STATE = #{company_state}
     </select>

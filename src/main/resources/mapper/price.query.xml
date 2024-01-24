@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="shin.com.show_voucher.biz.dao.PriceDao">
+
+    <!--  insert visit  -->
+    <insert id="insertPrice" parameterType="CreatePrice">
+        INSERT INTO PRICE
+        (PRICE_VOUCHER_IDX, PRICE_COMPANY_IDX, BUY_RATIO, BUY_PRISE, SELL_RATIO, SELL_PRISE, PRICE_STATE, PRICE_REG_DTM, PRICE_MOD_DTM)
+        VALUES
+        (#{price_voucher_idx}, #{price_company_idx}, #{buy_ratio}, #{buy_price}, #{sell_ratio}, #{sell_price}, #{price_state}, NOW(), NOW())
+    </insert>
+
+</mapper>
