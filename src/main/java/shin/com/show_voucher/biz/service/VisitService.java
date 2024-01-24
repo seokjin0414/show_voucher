@@ -20,7 +20,7 @@ public class VisitService {
      * 방문자 Agent 가지고 오기
      *
      * @param request
-     * @return {@return }
+     * @return String
      */
     public String getAgent(HttpServletRequest request) {
         return request.getHeader("User-Agent");
@@ -30,7 +30,7 @@ public class VisitService {
      * 방문자 IP 가지고 오기
      *
      * @param request
-     * @return {@return }
+     * @return String
      */
     public String getUserIp(HttpServletRequest request) {
         return SessionUtil.getRemoteIP(request);
@@ -40,9 +40,9 @@ public class VisitService {
      * 방문자 정보 저장
      *
      * @param request
-     * @return {@return }
+     * @return int
      */
-    public int insertVisit(HttpServletRequest request) {
+    public int saveVisit(HttpServletRequest request) {
 
         try {
             CreateVisit createVisit = new CreateVisit();

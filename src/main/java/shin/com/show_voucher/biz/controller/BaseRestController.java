@@ -4,14 +4,13 @@
 
 package shin.com.show_voucher.biz.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import shin.com.show_voucher.biz.vo.ResultVo;
 import shin.com.show_voucher.exception.ExceptionBase;
 import shin.com.show_voucher.exception.http.ApiExecutionException;
 import shin.com.show_voucher.exception.http.BadRequestException;
 import shin.com.show_voucher.exception.http.ForbiddenException;
 import shin.com.show_voucher.exception.http.UnauthorizedReqeustException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -25,13 +24,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- *
- */
 @RestController
+@Slf4j
 public class BaseRestController {
-
-	private final Logger L = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private MessageSource messageSource;
@@ -41,7 +36,7 @@ public class BaseRestController {
 
 	@ExceptionHandler(ExceptionBase.class)
 	public ResponseEntity<?> handleBaseException(HttpServletRequest req, Exception ex) {
-		L.error(ex.getLocalizedMessage());
+		log.error(ex.getLocalizedMessage());
 		if(ex instanceof BadRequestException){
 			String errorMsg = getMsg(req, ex);
 			return badReq(errorMsg);
@@ -80,7 +75,7 @@ public class BaseRestController {
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<?> handleException(HttpServletRequest req, Exception ex) {
 		String msg = ex.getMessage();
-		L.warn(msg);
+		log.warn(msg);
 
 		return badReq("error.bad.request");
 	}

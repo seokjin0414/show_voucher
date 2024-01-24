@@ -12,6 +12,7 @@ import java.util.List;
 public interface VisitDao {
     /**
      * 방문자 저장
+     *
      * @param createVisit
      */
     void insertVisit(CreateVisit createVisit);

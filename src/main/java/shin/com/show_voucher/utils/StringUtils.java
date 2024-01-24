@@ -3,10 +3,6 @@ package shin.com.show_voucher.utils;
 import com.fasterxml.uuid.Generators;
 import com.nhncorp.lucy.security.xss.XssPreventer;
 
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;

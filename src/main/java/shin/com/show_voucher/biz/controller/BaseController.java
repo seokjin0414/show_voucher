@@ -4,30 +4,22 @@
 
 package shin.com.show_voucher.biz.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import shin.com.show_voucher.biz.vo.SessionUserVo;
 import shin.com.show_voucher.exception.ExceptionBase;
 import shin.com.show_voucher.exception.http.ApiExecutionException;
 import shin.com.show_voucher.exception.http.BadRequestException;
 import shin.com.show_voucher.exception.http.UnauthorizedReqeustException;
 import shin.com.show_voucher.utils.SessionUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 import jakarta.servlet.http.HttpServletRequest;
 
-/**
- * @author MOBUILDZ
- * @since 2021. 01
- * @version 1.0
- *
- */
 @Controller
+@Slf4j
 public class BaseController {
-
-	private final Logger L = LoggerFactory.getLogger(this.getClass());
 
 	private final String ERR_400 = "error/400";
 	private final String ERR_401 = "error/401";
@@ -37,7 +29,7 @@ public class BaseController {
 	@ExceptionHandler(ExceptionBase.class)
 	public ModelAndView handleBaseException(HttpServletRequest req, Exception ex) {
 		ModelAndView mv = new ModelAndView(ERR_400);
-		L.error(ex.getLocalizedMessage());
+		log.error(ex.getLocalizedMessage());
 		if(ex instanceof BadRequestException){
 			String errorMsg = getMsg(req, ex);
 			mv.addObject(ATTR_NM, errorMsg);
@@ -78,7 +70,7 @@ public class BaseController {
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handleException(HttpServletRequest req, Exception ex) {
 		String msg = ex.getMessage();
-		L.error(msg);
+		log.error(msg);
 		ModelAndView mv = new ModelAndView(ERR_400);
 		mv.addObject(ATTR_NM, msg);
 		return mv;
@@ -87,7 +79,7 @@ public class BaseController {
 	@ExceptionHandler(ApiExecutionException.class)
 	public ModelAndView handleApiException(HttpServletRequest req, Exception ex) {
 		String msg = ex.getMessage();
-		L.warn(msg);
+		log.warn(msg);
 		ModelAndView mv = new ModelAndView(ERR_400);
 		mv.addObject(ATTR_NM, msg);
 		return mv;

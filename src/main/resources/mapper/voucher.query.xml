@@ -3,11 +3,19 @@
 
 <mapper namespace="shin.com.show_voucher.biz.dao.VoucherDao">
 
-    <!--  parsing url list  -->
-    <select id="selectVoucherList" parameterType="String" resultType="GetVoucherForParsing">
+    <!--  select voucher list for parsing  -->
+    <select id="selectVoucherListForParsing" parameterType="String" resultType="GetVoucherForParsing">
         SELECT VOUCHER_IDX, VOUCHER_NAME, VOUCHER_FACE_VALUE
         FROM VOUCHER
         WHERE VOUCHER_STATE = #{voucher_state}
     </select>
+
+    <!--  insert voucher  -->
+    <insert id="insertVoucher" parameterType="CreateVoucher">
+        INSERT INTO VOUCHER
+        (VOUCHER_NAME, VOUCHER_FACE_VALUE, VOUCHER_TYPE, VOUCHER_STATE, VOUCHER_REG_DTM, VOUCHER_MOD_DTM)
+        VALUES
+        (#{voucher_name}, #{voucher_face_value}, #{voucher_type}, #{voucher_state}, NOW(), NOW())
+    </insert>
 
 </mapper>

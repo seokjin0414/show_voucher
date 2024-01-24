@@ -3,9 +3,7 @@
 
 <mapper namespace="shin.com.show_voucher.biz.dao.VisitDao">
 
-
-
-    <!--  parsing url list  -->
+    <!--  insert visit  -->
     <insert id="insertVisit" parameterType="CreateVisit">
         INSERT INTO VISIT
         (VISIT_TYPE, VISIT_AGENT, VISIT_IP, VISIT_REG_DTM, VISIT_MOD_DTM)

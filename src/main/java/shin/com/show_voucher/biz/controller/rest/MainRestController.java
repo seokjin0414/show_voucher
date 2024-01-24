@@ -23,13 +23,14 @@ public class MainRestController extends BaseRestController {
 
     /**
      * 방문시 정보 저장
+     *
      * @param request
-     * @return {@return }
+     * @return ResponseEntity<?>
      */
     @PostMapping(value = "saveVisit")
     @Authorization(role = Authorization.Role.ANONY)
     public ResponseEntity<?> saveVisit(HttpServletRequest request) {
-        visitService.insertVisit(request);
+        visitService.saveVisit(request);
         return success("OK");
     }
 

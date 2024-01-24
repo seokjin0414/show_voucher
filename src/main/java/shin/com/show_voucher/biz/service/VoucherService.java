@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import shin.com.show_voucher.biz.dao.VoucherDao;
 import shin.com.show_voucher.biz.vo.code.StateCode;
+import shin.com.show_voucher.biz.vo.model.voucher.CreateVoucher;
 import shin.com.show_voucher.biz.vo.model.voucher.GetVoucherForParsing;
 
 import java.util.List;
@@ -16,9 +17,23 @@ public class VoucherService {
 
     private final VoucherDao voucherDao;
 
-    public List<GetVoucherForParsing> selectVoucherList() {
+    /**
+     * 파싱할 회사 리스트
+     *
+     * @return
+     */
+    public List<GetVoucherForParsing> getVoucherListForParsing() {
         String using = StateCode.Y.toString();
-        return voucherDao.selectVoucherList(using);
+        return voucherDao.selectVoucherListForParsing(using);
     };
 
+    /**
+     * 상품권 저장
+     *
+     * @param createVoucher
+     * @return int
+     */
+    public int saveVoucher(CreateVoucher createVoucher) {
+        return voucherDao.insertVoucher(createVoucher);
+    }
 }

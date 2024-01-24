@@ -3,11 +3,19 @@
 
 <mapper namespace="shin.com.show_voucher.biz.dao.CompanyDao">
 
-    <!--  parsing url list  -->
-    <select id="selectCompanyList" parameterType="String" resultType="GetCompanyForParsing">
+    <!--  select company list for parsing  -->
+    <select id="selectCompanyListForParsing" parameterType="String" resultType="GetCompanyForParsing">
         SELECT COMPANY_NAME, COMPANY_URL
         FROM COMPANY
         WHERE COMPANY_STATE = #{company_state}
     </select>
+
+    <!--  insert company  -->
+    <insert id="insertCompany" parameterType="CreateCompany">
+        INSERT INTO COMPANY
+        (COMPANY_NAME, COMPANY_URL, COMPANY_PHONE, COMPANY_ADDR, COMPANY_MAP, COMPANY_STATE, COMPANY_ETC, COMPANY_REG_DTM, COMPANY_MOD_DTM)
+        VALUES
+        (#{company_name}, #{company_url}, #{company_phone}, #{company_addr}, #{company_map}, #{company_state}, #{company_etc}, NOW(), NOW())
+    </insert>
 
 </mapper>
