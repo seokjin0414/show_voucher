@@ -10,9 +10,8 @@ import java.util.List;
 @Repository
 public interface VoucherDao {
     /**
-     *
      * @param voucher_state
-     * @return List
+     * @return {@return }
      */
-    List<GetVoucherForParsing> SelectVoucherList(String voucher_state);
+    List<GetVoucherForParsing> selectVoucherList(String voucher_state);
 }

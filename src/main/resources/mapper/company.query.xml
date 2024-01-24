@@ -4,7 +4,7 @@
 <mapper namespace="shin.com.show_voucher.biz.dao.CompanyDao">
 
     <!--  parsing url list  -->
-    <select id="SelectCompanyList" parameterType="String" resultType="GetCompanyForParsing">
+    <select id="selectCompanyList" parameterType="String" resultType="GetCompanyForParsing">
         SELECT COMPANY_NAME, COMPANY_URL
         FROM COMPANY
         WHERE COMPANY_STATE = #{company_state}

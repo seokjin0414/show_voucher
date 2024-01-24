@@ -4,7 +4,7 @@
 <mapper namespace="shin.com.show_voucher.biz.dao.VoucherDao">
 
     <!--  parsing url list  -->
-    <select id="SelectVoucherList" parameterType="String" resultType="GetVoucherForParsing">
+    <select id="selectVoucherList" parameterType="String" resultType="GetVoucherForParsing">
         SELECT VOUCHER_IDX, VOUCHER_NAME, VOUCHER_FACE_VALUE
         FROM VOUCHER
         WHERE VOUCHER_STATE = #{voucher_state}
