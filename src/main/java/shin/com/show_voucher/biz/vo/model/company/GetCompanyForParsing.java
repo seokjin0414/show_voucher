@@ -4,7 +4,7 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 @Data
-@Alias("GetCompanyUrlForParsing")
+@Alias("GetCompanyForParsing")
 public class GetCompanyForParsing {
     private String company_idx;
     private String company_name;

@@ -19,36 +19,36 @@ public class VisitService {
     /**
      * 방문자 Agent 가지고 오기
      *
-     * @param httpServletRequest
+     * @param request
      * @return {@return }
      */
-    public String getAgent(HttpServletRequest httpServletRequest) {
-        return httpServletRequest.getHeader("User-Agent");
+    public String getAgent(HttpServletRequest request) {
+        return request.getHeader("User-Agent");
     }
 
     /**
      * 방문자 IP 가지고 오기
      *
-     * @param httpServletRequest
+     * @param request
      * @return {@return }
      */
-    public String getUserIp(HttpServletRequest httpServletRequest) {
-        return SessionUtil.getRemoteIP(httpServletRequest);
+    public String getUserIp(HttpServletRequest request) {
+        return SessionUtil.getRemoteIP(request);
     }
 
     /**
      * 방문자 정보 저장
      *
-     * @param httpServletRequest
+     * @param request
      * @return {@return }
      */
-    public int insertVisit(HttpServletRequest httpServletRequest) {
+    public int insertVisit(HttpServletRequest request) {
 
         try {
             CreateVisit createVisit = new CreateVisit();
             createVisit.setVisit_type(VisitTypeCode.G.name());
-            createVisit.setVisit_agent(getAgent(httpServletRequest));
-            createVisit.setVisit_ip(getUserIp(httpServletRequest));
+            createVisit.setVisit_agent(getAgent(request));
+            createVisit.setVisit_ip(getUserIp(request));
             visitDao.insertVisit(createVisit);
         } catch (Exception e) {
             log.error(e.getLocalizedMessage());

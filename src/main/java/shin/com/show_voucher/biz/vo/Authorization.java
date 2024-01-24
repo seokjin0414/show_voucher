@@ -7,5 +7,6 @@ import java.lang.annotation.*;
 @Documented
 public @interface Authorization {
     enum Role { LOGIN, ANONY }
+
     public Role role() default Role.ANONY;
 }

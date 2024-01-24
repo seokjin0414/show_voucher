@@ -17,7 +17,7 @@ public class CompanyService {
     private final CompanyDao companyDao;
 
     public List<GetCompanyForParsing> selectCompanyList() {
-        String using = StateCode.Y.name();
+        String using = StateCode.Y.toString();
         return companyDao.selectCompanyList(using);
     };
 

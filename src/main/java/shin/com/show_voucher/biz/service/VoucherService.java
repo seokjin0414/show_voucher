@@ -17,7 +17,7 @@ public class VoucherService {
     private final VoucherDao voucherDao;
 
     public List<GetVoucherForParsing> selectVoucherList() {
-        String using = StateCode.Y.name();
+        String using = StateCode.Y.toString();
         return voucherDao.selectVoucherList(using);
     };
 

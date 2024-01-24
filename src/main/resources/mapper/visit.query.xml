@@ -10,7 +10,7 @@
         INSERT INTO VISIT
         (VISIT_TYPE, VISIT_AGENT, VISIT_IP, VISIT_REG_DTM, VISIT_MOD_DTM)
         VALUES
-        (#{visit_type}, #{visit_agent}, #{visit_ip}, NOW(), NOW())
+        (#{visit_type}, #{visit_agent}, #{visit_ip}, NOW(6), NOW(6))
     </insert>
 
 </mapper>

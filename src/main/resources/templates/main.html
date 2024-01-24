@@ -30,7 +30,7 @@
       <div class="header">
         <div class="logo">
           <div class="logo-image" onclick="location.href='/'">
-            <img src="assets/images/logos/tost-logo.png" alt="logo" />
+            <img src="" alt="logo" />
           </div>
         </div>
         <div class="header-icons">
@@ -82,11 +82,11 @@
           <span>가격 : </span>
           <span id="today_price">2172.7521</span>
         </div>
-        <div class="banner">
+        <!--<div class="banner">
           <ul class="banner-carousel">
-            <!--                <li class="banner-item">-->
-            <!--                    <img src="/assets/images/banners/banner1.png" alt="logo">-->
-            <!--                </li>-->
+            &lt;!&ndash;                <li class="banner-item">&ndash;&gt;
+            &lt;!&ndash;                    <img src="/assets/images/banners/banner1.png" alt="logo">&ndash;&gt;
+            &lt;!&ndash;                </li>&ndash;&gt;
             <li class="banner-item">
               <img
                       th:src="|/assets/images/banners/tost_banner01_${#locale}.png|"
@@ -98,7 +98,7 @@
                     onerror="this.src='/assets/images/banners/banner3.png'" alt="logo" />
             </li>
           </ul>
-        </div>
+        </div>-->
         <div class="staking">
           <button id="staking_btn" class="staking-button">
             지금 바로 va 하세요
@@ -109,7 +109,7 @@
           </div>
         </div>
         <div class="corp">
-          <ul class="corp-list">
+          <!--<ul class="corp-list">
             <li
               class="corp-item"
               onclick="window.open('https://kompasswallet.io/')"
@@ -147,7 +147,7 @@
               </div>
               <div class="corp-name">LAZY</div>
             </li>
-          </ul>
+          </ul>-->
         </div>
       </main>
       <ul class="alarm" id="notice_list">
@@ -175,6 +175,9 @@
         var init = function () {
           slickEvent();
         };
+
+        postJson("/api/v1/show_voucher/main/saveVisit", "", function (json) {
+        })
 
         return {
           init: init,
