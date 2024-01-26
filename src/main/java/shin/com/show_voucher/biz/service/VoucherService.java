@@ -22,13 +22,12 @@ public class VoucherService {
      *
      * @return
      */
-    public List<GetVoucherForParsing> getVoucherListForParsing() {
-        String using = StateCode.Y.toString();
-        return voucherDao.selectVoucherListForParsing(using);
+    public List<GetVoucherForParsing> getVoucherListForParsing(String stateCode) {
+        return voucherDao.selectVoucherListForParsing(stateCode);
     };
 
     /**
-     * 상품권 저장
+     * 상품권 저장s
      *
      * @param createVoucher
      * @return int

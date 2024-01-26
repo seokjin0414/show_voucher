@@ -22,9 +22,8 @@ public class CompanyService {
      *
      * @return List<GetCompanyForParsing>
      */
-    public List<GetCompanyForParsing> getCompanyListForParsing() {
-        String using = StateCode.Y.toString();
-        return companyDao.selectCompanyListForParsing(using);
+    public List<GetCompanyForParsing> getCompanyListForParsing(String stateCode) {
+        return companyDao.selectCompanyListForParsing(stateCode);
     };
 
     /**

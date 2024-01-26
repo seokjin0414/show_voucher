@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import shin.com.show_voucher.biz.dao.PriceDao;
 import shin.com.show_voucher.biz.vo.code.StateCode;
-import shin.com.show_voucher.biz.vo.model.company.CreateCompany;
 import shin.com.show_voucher.biz.vo.model.price.CreatePrice;
 
 @Service
