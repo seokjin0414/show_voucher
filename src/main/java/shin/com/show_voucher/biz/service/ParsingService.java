@@ -29,7 +29,7 @@ public class ParsingService {
     String u1 = "https://xn--299aa03ct82dtjik1sz2c.com/";
 
 
-    public Document testP(String url) throws IOException {
+    public Document parsingUrl(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
         log.info(doc.title());
 
