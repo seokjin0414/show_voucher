@@ -1,6 +1,8 @@
 package shin.com.show_voucher;
 
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,13 +14,25 @@ public class ParsingServiceTests {
     @Autowired
     ParsingService parsingService;
 
+    private final String u1 = "https://xn--299aa03ct82dtjik1sz2c.com/";
+
     @Test
     public void parsingUrlTest() {
+        long total = 0;
+        int cnt = 1;
         try {
-            parsingService.parsingUrl("https://xn--299aa03ct82dtjik1sz2c.com/");
+            for (int i = 0; i < cnt; i++) {
+                long before = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+                Element elem = Jsoup.connect(u1).get();
+                System.gc();
+                long after = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+                total += (before - after);
+            }
         } catch (Exception e) {
-            e.getLocalizedMessage();
+            e.printStackTrace();
         }
+
+        System.out.println("평균" + (total / 1024 / 1024 / cnt));
     }
 
 }
