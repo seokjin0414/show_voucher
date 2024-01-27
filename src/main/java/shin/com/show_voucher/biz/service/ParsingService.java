@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import shin.com.show_voucher.biz.vo.code.StateCode;
@@ -30,16 +31,20 @@ public class ParsingService {
 
     public Document parsingUrl(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
-        log.info(doc.title());
 
-        // /html/body/div[2]/div[4]/div/div/div/div/div[1]/table/tbody/tr[2]/td[2]/span/span[1]
-        //*[@id="no-fouc"]/body/div[2]/div[4]/div/div/div/div/div[1]/table/tbody/tr[2]/td[2]/span/span[1]
+// /html/body/div[2]/div[4]/div/div/div/div/div[1]/table/tbody/tr[2]/td[2]/span/span[1]
+// *[@id="no-fouc"]/body/div[2]/div[4]/div/div/div/div/div[1]/table/tbody/tr[2]/td[2]/span/span[1]
 
-        Elements ele = doc.selectXpath("/html/body/div[2]/div[4]/div/div/div/div/div[1]/table/tbody/tr[2]/td[2]/span/span[1]");
+// body > div.dsgn-body.mode-render > div.userEL14741173.el_2.element.aos-init.aos-animate > div > div > div > div > div.fr-table-responsive > table > tbody > tr:nth-child(2) > td:nth-child(2) > span > span:nth-child(1)
+// body > div.dsgn-body.mode-render > div.userEL14741173.el_2.element.aos-init.aos-animate > div > div > div > div > div.fr-table-responsive > table > tbody > tr:nth-child(2) > td:nth-child(2) > span > span:nth-child(1)
 
-        for (Element line : ele) {
-            log.info("%s\n\t%s", line);
+
+        Element element = doc.selectFirst( "body > div.dsgn-body.mode-render > div.userEL14741173.el_2.element.aos-init.aos-animate > div");
+        if (element != null) {
+            log.info(element.text());
         }
+
+
 
         return doc;
     }

@@ -14,7 +14,6 @@ public class ParsingServiceTests {
 
     @Test
     public void parsingUrlTest() {
-
         try {
             parsingService.parsingUrl("https://xn--299aa03ct82dtjik1sz2c.com/");
         } catch (Exception e) {
