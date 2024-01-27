@@ -22,7 +22,6 @@ public class ParsingService {
 
     private final CompanyService companyService;
     private final VoucherService voucherService;
-    private final ParsingService parsingService;
 
     private final String stateCode = StateCode.Y.name();
 
@@ -33,10 +32,13 @@ public class ParsingService {
         Document doc = Jsoup.connect(url).get();
         log.info(doc.title());
 
-        Elements newsHeadlines = doc.select("#mp-itn b a");
+        // /html/body/div[2]/div[4]/div/div/div/div/div[1]/table/tbody/tr[2]/td[2]/span/span[1]
+        //*[@id="no-fouc"]/body/div[2]/div[4]/div/div/div/div/div[1]/table/tbody/tr[2]/td[2]/span/span[1]
 
-        for (Element headline : newsHeadlines) {
-            log.info("%s\n\t%s",headline.attr("title"), headline.absUrl("href"));
+        Elements ele = doc.selectXpath("/html/body/div[2]/div[4]/div/div/div/div/div[1]/table/tbody/tr[2]/td[2]/span/span[1]");
+
+        for (Element line : ele) {
+            log.info("%s\n\t%s", line);
         }
 
         return doc;
