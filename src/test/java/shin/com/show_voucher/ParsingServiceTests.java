@@ -3,6 +3,7 @@ package shin.com.show_voucher;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +24,13 @@ public class ParsingServiceTests {
         try {
             for (int i = 0; i < cnt; i++) {
                 long before = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-                Element elem = Jsoup.connect(u1).get();
+                Elements elem = Jsoup
+                        .connect(u1)
+                        .get()
+                        .body()
+                        .getElementsByClass("userEL14741173");
+
+
                 System.gc();
                 long after = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
                 total += (before - after);
